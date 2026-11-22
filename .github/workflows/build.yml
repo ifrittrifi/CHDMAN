@@ -1,0 +1,93 @@
+name: Build a8nx64 (Switch)
+
+on:
+  push:
+    paths: ['*.zip', '.github/workflows/build.yml']
+  workflow_dispatch:
+    inputs:
+      zip_name:
+        description: 'Source zip in the repo root (empty = auto-detect)'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find the source zip
+        id: find
+        shell: bash
+        run: |
+          set -euo pipefail
+          apt-get update -qq
+          apt-get install -y -qq unzip
+          echo "Zips in repo root:"; ls -la ./*.zip
+          WANT="${{ github.event.inputs.zip_name }}"
+          rm -rf build && mkdir build
+          FOUND=""
+          for z in ${WANT:-$(ls -t ./*.zip)}; do
+            echo "--- checking $z"
+            T=$(mktemp -d)
+            if unzip -q -o "$z" -d "$T"; then
+              MK=$(find "$T" -name Makefile -not -path '*/test/*' | head -n1 || true)
+              if [ -n "$MK" ] && [ -f "$(dirname "$MK")/source/elf64.c" ]; then
+                FOUND="$z"; cp -a "$(dirname "$MK")/." build/; echo "    match: $(dirname "$MK")"; rm -rf "$T"; break
+              fi
+            else
+              echo "    unzip failed"
+            fi
+            rm -rf "$T"
+          done
+          [ -n "$FOUND" ] || { echo "::error::No zip with Makefile + source/elf64.c in the repo root"; exit 1; }
+          echo "dir=build" >> "$GITHUB_OUTPUT"
+          echo "zip=$FOUND" >> "$GITHUB_OUTPUT"
+          ls -la build build/source
+
+      - name: Install Switch libraries
+        shell: bash
+        run: |
+          set -uo pipefail
+          P=/opt/devkitpro/portlibs/switch
+          have() { [ -f $P/lib/libEGL.a ] && [ -f $P/lib/libz.a ] && [ -f $P/lib/libdrm_nouveau.a ]; }
+          if have; then echo "Switch libraries already in the image"; exit 0; fi
+          # pkg.devkitpro.org sometimes answers 403/5xx to CI runners: retry with a pause
+          for i in 1 2 3 4 5 6; do
+            echo "=== attempt $i"
+            if dkp-pacman -Sy --noconfirm && dkp-pacman -S --noconfirm --needed switch-mesa switch-zlib; then
+              have && { echo "installed"; exit 0; }
+            fi
+            sleep $((i * 30))
+          done
+          echo "::error::Could not install switch-mesa / switch-zlib from pkg.devkitpro.org (see log). Re-run the job later."
+          exit 1
+
+      - name: Build
+        working-directory: ${{ steps.find.outputs.dir }}
+        env:
+          DEVKITPRO: /opt/devkitpro
+        run: |
+          export PATH=$DEVKITPRO/devkitA64/bin:$DEVKITPRO/tools/bin:$PATH
+          make clean || true
+          make -j"$(nproc)" 2>&1 | tee build.log
+          ls -la *.nro
+
+      - name: Collect output
+        if: always()
+        run: |
+          mkdir -p out
+          cp "${{ steps.find.outputs.dir }}"/*.nro out/ 2>/dev/null || true
+          cp "${{ steps.find.outputs.dir }}"/build.log out/ 2>/dev/null || true
+          NM=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-nm
+          E=$(find "${{ steps.find.outputs.dir }}" -name '*.elf' | head -1)
+          echo "elf=$E"
+          if [ -n "$E" ]; then "$NM" -n -C "$E" | gzip -9 > out/a8nx64.sym.txt.gz; fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a8nx64
+          path: out/
+          if-no-files-found: warn
