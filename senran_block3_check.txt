@@ -1,0 +1,120 @@
+SENRAN KAGURA - BLOCK 3 DIAGNOSTIC
+=======================================================
+Ukuran file       : 69,568,256
+Base TMD          : 0x157900
+Index start       : 0x157970
+Index end         : 0x157978
+Vertex start      : 0x157990
+Vertex end        : 0x24F200
+
+INFORMASI INDEKS
+Jumlah UINT16     : 4
+Nilai minimum     : 0
+Nilai maksimum    : 544
+Jumlah unik       : 2
+Kelipatan 3       : False
+48 nilai pertama  : [544, 0, 0, 0]
+
+METADATA HEADER
++0xA8 = 1
++0xAC = 0
++0xB0 = 0
++0xB4 = 3
++0xB8 = 1
++0xBC = 23
++0xC0 = 0
++0xC4 = 0
++0xC8 = 1
++0xCC = 26,208
++0xD0 = 3
++0xD4 = 0
++0xD8 = 4
++0xDC = 30,576
+
+PEMERIKSAAN STRIDE
+Ukuran kandidat vertex: 1,013,872 bytes
+
+STRIDE 12:
+  Record tersedia : 84,489
+  XYZ valid       : 77.94%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (0.0, 0.0, 0.0)
+  Record 2: (1.401298464324817e-45, 0.0, 0.0)
+  Record 3: (4.203895392974451e-45, 1.401298464324817e-45, 3.2229864679470793e-44)
+  Record 4: (0.0, 0.0, 1.401298464324817e-45)
+
+STRIDE 16:
+  Record tersedia : 63,367
+  XYZ valid       : 59.26%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (0.0, 0.0, 1.401298464324817e-45)
+  Record 2: (0.0, 4.203895392974451e-45, 1.401298464324817e-45)
+  Record 3: (0.0, 0.0, 1.401298464324817e-45)
+  Record 4: (4.203895392974451e-45, 0.0, 5.605193857299268e-45)
+
+STRIDE 20:
+  Record tersedia : 50,693
+  XYZ valid       : 59.77%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (0.0, 1.401298464324817e-45, 0.0)
+  Record 2: (1.401298464324817e-45, 3.2229864679470793e-44, 0.0)
+  Record 3: (3.6725230153024806e-41, 4.203895392974451e-45, 0.0)
+  Record 4: (-83.82766723632812, -3.9434847831726074, 37.53694534301758)
+
+STRIDE 24:
+  Record tersedia : 42,244
+  XYZ valid       : 61.59%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (1.401298464324817e-45, 0.0, 0.0)
+  Record 2: (0.0, 0.0, 1.401298464324817e-45)
+  Record 3: (5.605193857299268e-45, 4.2846101845195607e-41, -83.82766723632812)
+  Record 4: (13.16032886505127, 105.77759552001953, 3.761583267877846e-37)
+
+STRIDE 28:
+  Record tersedia : 36,209
+  XYZ valid       : 39.65%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (0.0, 0.0, 4.203895392974451e-45)
+  Record 2: (1.401298464324817e-45, 3.6725230153024806e-41, 4.203895392974451e-45)
+  Record 3: (-3.9434847831726074, 37.53694534301758, -35.268497467041016)
+  Record 4: (0.0, 0.0, nan)
+
+STRIDE 32:
+  Record tersedia : 31,683
+  XYZ valid       : 62.10%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (0.0, 4.203895392974451e-45, 1.401298464324817e-45)
+  Record 2: (4.203895392974451e-45, 0.0, 5.605193857299268e-45)
+  Record 3: (13.16032886505127, 105.77759552001953, 3.761583267877846e-37)
+  Record 4: (-3.7340587935140846e+37, 4.138706427894675e-38, 0.0)
+
+STRIDE 36:
+  Record tersedia : 28,163
+  XYZ valid       : 61.55%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (4.203895392974451e-45, 1.401298464324817e-45, 3.2229864679470793e-44)
+  Record 2: (5.605193857299268e-45, 4.2846101845195607e-41, -83.82766723632812)
+  Record 3: (6.42268335541708e-39, 0.0, 0.0)
+  Record 4: (4.670255293603987e-10, 5.739718509874451e-42, 0.0)
+
+STRIDE 40:
+  Record tersedia : 25,346
+  XYZ valid       : 62.96%
+  Indeks maksimum < jumlah record: True
+  Record 0: (2.212482119353167e-40, 0.0, 0.0)
+  Record 1: (1.401298464324817e-45, 3.2229864679470793e-44, 0.0)
+  Record 2: (-83.82766723632812, -3.9434847831726074, 37.53694534301758)
+  Record 3: (nan, -1.9961481210023912e-38, -3.7340587935140846e+37)
+  Record 4: (-11257783517184.0, 4.6398106690048735e-08, 3.6734198463196485e-40)
+
+PEMERIKSAAN NILAI METADATA
+Jumlah indeks maksimum + 1 : 545
+Metadata +0xDC             : 30,576
+Metadata +0xCC             : 26,208
