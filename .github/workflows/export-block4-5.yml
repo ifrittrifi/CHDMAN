@@ -1,0 +1,35 @@
+name: Export Block 4-5 ZIP Artifact
+
+on:
+  push:
+    paths:
+      - 'block4_5.zip'
+      - '.github/workflows/export-block4-5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify archive exists and inspect ZIP
+        run: |
+          test -s block4_5.zip
+          unzip -t block4_5.zip
+          echo "Archive size:"
+          stat -c '%n %s bytes' block4_5.zip
+          echo "Archive contents:"
+          unzip -l block4_5.zip
+
+      - name: Upload archive as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: block4_5
+          path: block4_5.zip
+          if-no-files-found: error
+          retention-days: 30
