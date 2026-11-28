@@ -1,0 +1,27 @@
+name: Export OBJ ZIP for inspection
+
+on:
+  push:
+    paths:
+      - ".github/workflows/export-obj-zip-artifact.yml"
+      - "obj.zip"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Verify archive exists
+        run: test -s obj.zip
+      - name: Upload archive as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: obj-zip-for-inspection
+          path: obj.zip
+          if-no-files-found: error
+          retention-days: 3
