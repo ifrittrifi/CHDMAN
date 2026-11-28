@@ -1,0 +1,42 @@
+SENRAN KAGURA - COMPONENT STRUCTURE AUDIT
+READ ONLY: original CAT is not modified.
+Source: /storage/emulated/0/GAMES/PC/SENRAN KAGURA Burst Re Newal/GameData/Model/Field/bg00.cat
+Component connectivity is derived from triangle index sharing.
+Triangle area is calculated from original XYZ coordinates.
+
+block4
+  triangles=24336 vertices=28392 referenced=28392 unreferenced=0
+  connected components=4056
+  component vertex-size min/median/p90/max = 7 / 7 / 7 / 7
+  component size histogram (vertices: number of components):
+    7: 4056
+  largest component sizes: 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7
+  unique edges=48672
+  edge-use histogram (uses: edges): 1: 24336, 2: 24336
+  repeated-index triangles=0
+  triangle area min/median/p90/max = 0.0454967515 / 0.203555547 / 0.418650958 / 0.539623605
+  zero/nearly-zero area triangles (<=1e-12)=0
+  very small area triangles (<=1e-8)=0
+
+block5
+  triangles=46032 vertices=33291 referenced=33291 unreferenced=0
+  connected components=1233
+  component vertex-size min/median/p90/max = 21 / 21 / 71 / 71
+  component size histogram (vertices: number of components):
+    21: 959
+    25: 137
+    71: 137
+  largest component sizes: 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71
+  unique edges=78090
+  edge-use histogram (uses: edges): 1: 18084, 2: 60006
+  repeated-index triangles=0
+  triangle area min/median/p90/max = 0.000350025321 / 0.0110700834 / 0.0364713909 / 0.298484318
+  zero/nearly-zero area triangles (<=1e-12)=0
+  very small area triangles (<=1e-8)=0
+
+NOTES
+- Many small components can be intentional disconnected patches; component counts alone do not prove corruption.
+- Triangle area thresholds are diagnostic and depend on the asset's coordinate scale.
+- Edge-use=1 indicates an open topological edge; edge-use>2 indicates non-manifold sharing.
+- This audit does not infer material, texture, or intended terrain continuity.
+- No coordinates, indices, or source bytes were changed.
