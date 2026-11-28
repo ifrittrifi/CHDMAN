@@ -1,0 +1,43 @@
+SENRAN KAGURA - BLOCK4/BLOCK5 TOPOLOGY DIAGNOSTIC v2
+READ ONLY: source CAT is never modified.
+Source: /storage/emulated/0/GAMES/PC/SENRAN KAGURA Burst Re Newal/GameData/Model/Field/bg00.cat
+Boundary-to-other-block comparison uses ALL target vertices, not only target boundary vertices.
+Original XYZ retained; terrain is not flattened.
+
+block4
+  triangles=24336 vertices=28392 referenced=28392 unreferenced=0
+  unique undirected edges=48672
+  edge-use histogram: 1 edge(s) used 24336 time(s), 2 edge(s) used 24336 time(s)
+  boundary edges(use=1)=24336
+  nonmanifold edges(use>2)=0
+  boundary vertices=24336
+  connected components=4056; largest component sizes=[7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+
+block5
+  triangles=46032 vertices=33291 referenced=33291 unreferenced=0
+  unique undirected edges=78090
+  edge-use histogram: 1 edge(s) used 18084 time(s), 2 edge(s) used 60006 time(s)
+  boundary edges(use=1)=18084
+  nonmanifold edges(use>2)=0
+  boundary vertices=18084
+  connected components=1233; largest component sizes=[71, 71, 71, 71, 71, 71, 71, 71, 71, 71]
+
+CROSS-BLOCK PROXIMITY
+block4 boundary vertices -> ALL block5 vertices
+  boundary vertices=24336; with nearby grid candidates=3901
+  nearest min/median/max=0.0086133208 / 0.075588528 / 0.27160082
+  <= 0.001 units: 0 (0.00%)
+  <= 0.01 units: 12 (0.05%)
+  <= 0.05 units: 1727 (7.10%)
+
+block5 boundary vertices -> ALL block4 vertices
+  boundary vertices=18084; with nearby grid candidates=1973
+  nearest min/median/max=0.0099743214 / 0.027531599 / 0.27989932
+  <= 0.001 units: 0 (0.00%)
+  <= 0.01 units: 2 (0.01%)
+  <= 0.05 units: 1700 (9.40%)
+
+INTERPRETATION
+- A high edge-use=1 count can indicate open surfaces, disconnected triangle topology, or an index interpretation issue; inspect the histogram and components together.
+- Boundary-to-all-vertices proximity can detect a boundary near the interior of the other block, but proximity alone does not prove a welded seam.
+- No CAT bytes, coordinates, or indices are changed.
